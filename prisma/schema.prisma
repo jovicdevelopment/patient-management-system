@@ -7,4 +7,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Models will be added stage by stage, starting with User/Role in Stage 2.
+
+// Stage: Authentication
+// Roles match the staff roles defined in the client requirements doc.
+enum Role {
+  ADMINISTRATOR
+  RECEPTIONIST
+  TRIAGE_NURSE
+  CLINICIAN
+  LAB_STAFF
+  PHARMACIST
+  BILLING_CASHIER
+  NURSING_STAFF
+  PROCUREMENT_STAFF
+  ACCOUNTS_STAFF
+  HR_STAFF
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

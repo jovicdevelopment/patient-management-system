@@ -10,6 +10,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { loginAction } from "./actions";
 
 export default function LoginPage() {
   return (
@@ -46,7 +47,7 @@ export default function LoginPage() {
               Enter your staff credentials to continue.
             </CardDescription>
           </CardHeader>
-          <form action="/api/auth/callback/credentials" method="post">
+          <form action={loginAction}>
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
